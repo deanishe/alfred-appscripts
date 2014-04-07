@@ -2,7 +2,11 @@
 
 List, search and run/open AppleScripts for the active application.
 
-![](demo.gif "")
+![](https://raw.githubusercontent.com/deanishe/alfred-appscripts/master/demo.gif)
+
+## Download ##
+
+The workflow can be downloaded from [GitHub](https://github.com/deanishe/alfred-appscripts/releases) or from [Packal](http://www.packal.org/workflow/appscripts).
 
 ## Usage ##
 
