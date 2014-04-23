@@ -27,6 +27,7 @@ from workflow import Workflow, ICON_WARNING, ICON_INFO, ICON_ERROR
 # named after the respective application, e.g. "Safari" scripts are in
 # ~/Library/Scripts/Applications/Safari
 APP_SCRIPT_DIRECTORY = os.path.expanduser('~/Library/Scripts/Applications')
+APP_SUPPORT_DIRECTORY = os.path.expanduser('~/Library/Application Support')
 
 # Acceptable extensions for AppleScripts
 SCRIPT_EXTENSIONS = ['.scpt', '.applescript']
@@ -129,19 +130,33 @@ class ScriptRunner(object):
         self.wf.add_item(title, subtitle, icon=icon)
 
     def get_scripts_for_app(self, app_name):
-        scriptdir = os.path.join(APP_SCRIPT_DIRECTORY, app_name)
-        if not os.path.isdir(scriptdir):
-            self.wf.logger.debug(
-                'App script directory does not exists : {!r}'.format(
-                    scriptdir))
-            return []
+        """
+        Return list of AppleScripts in
+        ~/Library/Scripts/Application/<app_name> and
+        ~/Library/Application Support/<app_name>/Scripts.
+
+        :param app_name: Name of applications (as shown in Menu Bar)
+        :type app_name: ``unicode``
+        :returns: List of paths to AppleScripts
+        :rtype: ``list``
+        """
+        scriptdirs = [os.path.join(APP_SCRIPT_DIRECTORY, app_name),
+                      os.path.join(APP_SUPPORT_DIRECTORY, app_name, 'Scripts')]
+
         scripts = []
-        for root, dirnames, filenames in os.walk(scriptdir):
-            for filename in filenames:
-                ext = os.path.splitext(filename)[1]
-                if ext.lower() not in SCRIPT_EXTENSIONS:
-                    continue
-                scripts.append(os.path.join(root, filename))
+        for scriptdir in scriptdirs:
+        # scriptdir = os.path.join(APP_SCRIPT_DIRECTORY, app_name)
+            if not os.path.isdir(scriptdir):
+                self.wf.logger.debug(
+                    'App script directory does not exists : {!r}'.format(
+                        scriptdir))
+                continue
+            for root, dirnames, filenames in os.walk(scriptdir):
+                for filename in filenames:
+                    ext = os.path.splitext(filename)[1]
+                    if ext.lower() not in SCRIPT_EXTENSIONS:
+                        continue
+                    scripts.append(os.path.join(root, filename))
         self.wf.logger.debug(
             '{} scripts found for app {!r}'.format(len(scripts), app_name))
         return scripts
