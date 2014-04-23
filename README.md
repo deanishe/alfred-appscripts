@@ -20,7 +20,7 @@ The workflow can be downloaded from [GitHub](https://github.com/deanishe/alfred-
 The workflow will search in two places:
 
 - Application-specific script directories under `~/Library/Scripts/Applications` matching application names, e.g. Safari scripts are stored in `~/Library/Scripts/Applications/Safari`. (This is where FastScripts looks.)
-- In a `Scripts` subdirectory of the active application's `Application Support` directory, e.g. BBEdit scripts are stored in `~/Application Support/BBEdit/Scripts`.
+- In a `Scripts` subdirectory of the active application's `Application Support` directory, e.g. BBEdit scripts are stored in `~/Library/Application Support/BBEdit/Scripts`.
 
 Any `*.scpt` or `*.applescript` files found within the appropriate directory for the currently-active application will be shown.
 
