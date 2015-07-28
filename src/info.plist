@@ -60,6 +60,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
@@ -85,10 +87,18 @@ echo $(basename "{query}")</string>
 				<integer>102</integer>
 				<key>keyword</key>
 				<string>.as</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
 				<key>runningsubtext</key>
 				<string>Loading scripts…</string>
 				<key>script</key>
-				<string>python scripts.py "{query}"</string>
+				<string>/usr/bin/python scripts.py "{query}"</string>
 				<key>subtext</key>
 				<string>Run a script from the active applications Scripts folder</string>
 				<key>title</key>
@@ -141,7 +151,7 @@ echo $(basename "{query}")</string>
 			<key>uid</key>
 			<string>AF9E613E-CBA5-478B-B924-C1D0B0D88D1C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>type</key>

@@ -17,10 +17,15 @@ The workflow can be downloaded from [GitHub](https://github.com/deanishe/alfred-
 
 ## Where are these scripts? ##
 
-The workflow will search in two places:
+The workflow will search in the following directories. `<app_name>` is the name of the application, e.g. `BBEdit` or `OmniFocus`, and `<bundle_id>` is the application's bundle ID, e.g. `com.barebones.bbedit` or `com.omnigroup.OmniFocus2`.
 
-- Application-specific script directories under `~/Library/Scripts/Applications` matching application names, e.g. Safari scripts are stored in `~/Library/Scripts/Applications/Safari`. (This is where FastScripts looks.)
-- In a `Scripts` subdirectory of the active application's `Application Support` directory, e.g. BBEdit scripts are stored in `~/Library/Application Support/BBEdit/Scripts`.
+- `~/Library/Scripts/Applications/<app_name>`. This is the directory used by FastScripts.
+- `~/Library/Scripts/Applications/<bundle_id>`
+- `~/Library/Application Scripts/<app_name>`
+- `~/Library/Application Scripts/<bundle_id>`
+- `~/Library/Application Support/<app_name>/Scripts`
+- `~/Library/Application Support/<bundle_id>/Scripts`
+- `~/Library/Containers/<bundle_id>/Data/Library/Application Support/<app_name>/Scripts`
 
 Any `*.scpt` or `*.applescript` files found within the appropriate directory for the currently-active application will be shown.
 
