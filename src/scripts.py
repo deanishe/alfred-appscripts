@@ -105,7 +105,8 @@ class ScriptRunner(object):
 
         if query:
             scripts = wf.filter(query, scripts,
-                                key=lambda x: os.path.basename(x))
+                                key=lambda x: os.path.basename(x),
+                                min_score=30)
 
         if not scripts:
             self.show_warning('No matching scripts')
@@ -165,7 +166,25 @@ class ScriptRunner(object):
         :type app_name: ``unicode``
         :returns: List of paths to AppleScripts
         :rtype: ``list``
+
         """
+
+        def _wrapper():
+            return self._get_scripts_for_app(app_name, bundle_id)
+
+        return wf.cached_data('appscripts-{0}'.format(bundle_id),
+                              _wrapper, max_age=30)
+
+    def _get_scripts_for_app(self, app_name, bundle_id):
+        """Return list of AppleScripts in `APP_SCRIPT_DIRECTORIES`.
+
+        :param app_name: Name of applications (as shown in Menu Bar)
+        :type app_name: ``unicode``
+        :returns: List of paths to AppleScripts
+        :rtype: ``list``
+
+        """
+
         scriptdirs = []
         for dirpath in APP_SCRIPT_DIRECTORIES:
             scriptdirs.append(dirpath.format(app_name=app_name,
