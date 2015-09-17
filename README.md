@@ -3,12 +3,12 @@
 
 List, search and run/open AppleScripts for the active application. You can also specify directories that contain scripts that will always be shown, regardless of the active application.
 
-![](https://raw.githubusercontent.com/deanishe/alfred-appscripts/master/demo.gif)
+![][demo]
 
 
 ## Download ##
 
-The workflow can be downloaded from [GitHub](https://github.com/deanishe/alfred-appscripts/releases) or from [Packal](http://www.packal.org/workflow/appscripts).
+The workflow can be downloaded from [GitHub][gh-releases] or from [Packal][packal].
 
 
 ## Usage ##
@@ -39,9 +39,9 @@ These are the default directories. `{app_name}` will be replaced with the name o
 - `~/Library/Application Support/{bundle_id}/Scripts`
 - `~/Library/Containers/{bundle_id}/Data/Library/Application Support/{app_name}/Scripts`
 
-Any `*.scpt` or `*.applescript` files found within the above directories will be shown.
+Any `*.scpt`, `*.applescript` or `*.scptd` (script bundle) files found within the above directories will be shown.
 
-If you add a directory path that doesn't contain `{app_name}` or `{bundle_id}`, it will match every application and the scripts will always be shown. See the settings file (`Script Directories.txt`) for more information.
+If you add a directory path that doesn't contain `{app_name}` or `{bundle_id}`, it will match every application and the scripts will always be shown. See the settings file (`AppScript Directories.txt`) for more information.
 
 
 ## Bug reports, feature requests ##
@@ -51,7 +51,7 @@ Please use [GitHub issues][gh-issues] to report bugs or request features. Altern
 
 ## Licence, thanks ##
 
-The workflow code and the bundled [Alfred-Workflow library][alfred-workflow] are both licensed under the [MIT Licence][mit-licence].
+The workflow code and the bundled [Alfred-Workflow][alfred-workflow] and [docopt][docopt] libraries are all licensed under the [MIT Licence][mit-licence].
 
 The workflow icon ([source][icon]), by [destegabry][destegabry], is licensed under the [Creative Commons Attribution-Noncommercial 3.0 License][cc-licence].
 
@@ -59,7 +59,7 @@ The other icons are from [Font Awesome][font-awesome] by [Dave Gandy][dave-gandy
 
 
 [gh-issues]: https://github.com/deanishe/alfred-appscripts/issues
-[forum-thread]: http://www.alfredforum.com/topic/4218-appscripts-%E2%80%94-list-search-and-run-applescripts-for-the-active-application/#entry38098
+[forum-thread]: http://www.alfredforum.com/topic/4218-appscripts
 [alfred-workflow]: https://github.com/deanishe/alfred-workflow
 [icon]: http://destegabry.deviantart.com/art/AppleScript-Folder-79793515
 [destegabry]: http://destegabry.deviantart.com/
@@ -68,3 +68,7 @@ The other icons are from [Font Awesome][font-awesome] by [Dave Gandy][dave-gandy
 [font-awesome]: http://fortawesome.github.io/Font-Awesome/
 [dave-gandy]: https://twitter.com/davegandy
 [sil-licence]: http://scripts.sil.org/OFL
+[docopt]: https://github.com/docopt/docopt
+[gh-releases]: https://github.com/deanishe/alfred-appscripts/releases
+[packal]: http://www.packal.org/workflow/appscripts
+[demo]: https://raw.githubusercontent.com/deanishe/alfred-appscripts/master/demo.gif "Animated demonstration of AppScripts"
