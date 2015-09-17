@@ -1,0 +1,42 @@
+
+#--------------------------------------------------------------------
+# Script Directories
+#--------------------------------------------------------------------
+# These directories will be searched for scripts.
+#
+# Files in these directories with extension *.applescript or *.scpt
+# will be shown in results.
+#
+# Empty lines and lines starting with # will be ignored.
+#
+# Environmental variables and ~/ will be expanded, so
+# $HOME/Scripts and ~/Scripts will both expand to the "Scripts"
+# directory in your home folder.
+#
+# In addition {app_name} and {bundle_id} will be replaced with
+# the name and bundle ID of the currently active application.
+#
+# For example, if Safari is the active application,
+# "~/Scripts/{app_name}" will be expanded to
+# "/Users/username/Scripts/Safari"
+#
+# If you want certain scripts to be shown for *every* application,
+# specify a path without {app_name} or {bundle_id} in the path.
+# This will then always match.
+
+#--------------------------------------------------------------------
+# Default directories
+#--------------------------------------------------------------------
+~/Library/Scripts/Applications/{app_name}
+~/Library/Scripts/Applications/{bundle_id}
+~/Library/Application Scripts/{app_name}
+~/Library/Application Scripts/{bundle_id}
+~/Library/Application Support/{app_name}/Scripts
+~/Library/Application Support/{bundle_id}/Scripts
+~/Library/Containers/{bundle_id}/Data/Library/Application Support/{app_name}/Scripts
+
+#--------------------------------------------------------------------
+# Custom directories
+#--------------------------------------------------------------------
+
+~/Library/Scripts

@@ -4,10 +4,30 @@
 <dict>
 	<key>bundleid</key>
 	<string>net.deanishe.alfred-appscripts</string>
-	<key>category</key>
-	<string>Tools</string>
 	<key>connections</key>
 	<dict>
+		<key>1BA77C1B-6BC1-4E2C-91B0-2455517B2092</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>62BFD5A0-D2C6-4222-BF37-9F92C8A09F47</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>62BFD5A0-D2C6-4222-BF37-9F92C8A09F47</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BDFDF78C-6D61-4023-99F9-CE926B973987</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>6D6DEF2A-5AF8-4EE9-90B8-F54C11E3660C</key>
 		<array>
 			<dict>
@@ -35,7 +55,7 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Open this script in AppleScript Editor</string>
+				<string>Open in AppleScript Editor</string>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -43,7 +63,7 @@
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
-				<string>Reveal this script in Finder</string>
+				<string>Reveal in Finder</string>
 			</dict>
 		</array>
 	</dict>
@@ -57,27 +77,6 @@
 	<string>AppScripts</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>osascript "{query}" 2&gt;&amp;1 &gt; /dev/null
-
-echo $(basename "{query}")</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6D6DEF2A-5AF8-4EE9-90B8-F54C11E3660C</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -98,7 +97,7 @@ echo $(basename "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Loading scripts…</string>
 				<key>script</key>
-				<string>/usr/bin/python scripts.py "{query}"</string>
+				<string>/usr/bin/python appscripts.py search "{query}"</string>
 				<key>subtext</key>
 				<string>Run a script from the active applications Scripts folder</string>
 				<key>title</key>
@@ -143,6 +142,27 @@ echo $(basename "{query}")</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>osascript "{query}" 2&gt;&amp;1 &gt; /dev/null
+
+echo $(basename "{query}")</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6D6DEF2A-5AF8-4EE9-90B8-F54C11E3660C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>openwith</key>
 				<string>/Applications/Utilities/AppleScript Editor.app</string>
 			</dict>
@@ -161,11 +181,100 @@ echo $(basename "{query}")</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>appscripts</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>script</key>
+				<string>/usr/bin/python appscripts.py config "{query}"</string>
+				<key>subtext</key>
+				<string>Help and Settings</string>
+				<key>title</key>
+				<string>AppScripts Configuration</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>1BA77C1B-6BC1-4E2C-91B0-2455517B2092</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>/usr/bin/python appscripts.py {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>62BFD5A0-D2C6-4222-BF37-9F92C8A09F47</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Configuration Updated</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>BDFDF78C-6D61-4023-99F9-CE926B973987</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>1BA77C1B-6BC1-4E2C-91B0-2455517B2092</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>62BFD5A0-D2C6-4222-BF37-9F92C8A09F47</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
 		<key>6D6DEF2A-5AF8-4EE9-90B8-F54C11E3660C</key>
 		<dict>
 			<key>ypos</key>
@@ -175,6 +284,11 @@ echo $(basename "{query}")</string>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
+		</dict>
+		<key>BDFDF78C-6D61-4023-99F9-CE926B973987</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 		<key>DD5D1469-1BD0-4F79-8E21-E3D2074DD472</key>
 		<dict>
