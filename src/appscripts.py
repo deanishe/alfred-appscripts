@@ -85,7 +85,7 @@ class AppScripts(object):
 
         wf = Workflow()
         log = wf.logger
-        app = ScriptRunner()
+        app = AppScripts()
         wf.run(app.run)
 
     """
@@ -181,6 +181,7 @@ class AppScripts(object):
                 title,
                 '↩ to run',
                 arg=script,
+                uid=script,
                 valid=True,
                 icon=icon_file,
                 icontype='fileicon',
@@ -296,6 +297,28 @@ class AppScripts(object):
     # ---------------------------------------------------------
     # Helper methods
 
+    # def _get_frontmost_app(self):
+    #     """Get name, bundle_id and path of frontmost application.
+
+    #     Set `app_name`, `app_path` and `bundle_id` properties.
+
+    #     Raise a `RuntimeError` if frontmost application cannot be
+    #     determined.
+    #     """
+
+    #     from AppKit import NSWorkspace
+    #     for app in NSWorkspace.sharedWorkspace().runningApplications():
+    #         if app.isActive():
+    #             self._app_name = app.localizedName()
+    #             self._bundle_id = app.bundleIdentifier()
+    #             self._app_path = app.bundleURL().fileSystemRepresentation()
+    #             log.debug('frontmost app : %r | %r | %r',
+    #                       self._app_name, self._bundle_id, self._app_path)
+    #             break
+
+    #     else:
+    #         raise RuntimeError("Couldn't get frontmost application.")
+
     def _get_frontmost_app(self):
         """Get name, bundle_id and path of frontmost application.
 
@@ -306,10 +329,8 @@ class AppScripts(object):
 
         """
 
-        # output = self.wf.decode(
-        #     subprocess.check_output())
-
-        cmd = [b'/usr/bin/osascript', b'-e', AS_ACTIVE_APP]
+        # cmd = [b'/usr/bin/osascript', b'-e', AS_ACTIVE_APP]
+        cmd = [self.wf.workflowfile('ActiveApp')]
         proc = subprocess.Popen(cmd,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.PIPE)
