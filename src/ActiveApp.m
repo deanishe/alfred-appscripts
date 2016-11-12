@@ -14,18 +14,13 @@ int main(int argc, const char * argv[]) {
         NSString *bundleID;
         NSURL *bundleURL;
         NSString *appPath;
-        NSArray *runningApps = [[NSWorkspace sharedWorkspace] runningApplications];
-        for (NSRunningApplication *currApp in runningApps) {
-            if ([currApp isActive]) {
-                appName = [currApp localizedName];
-                bundleID = [currApp bundleIdentifier];
-                bundleURL = [currApp bundleURL];
-                appPath = [NSString stringWithUTF8String: bundleURL.fileSystemRepresentation];
-//                NSLog(@"\n%@\n%@\n%@", appName, bundleID, appPath);
-                printf("%s\r%s\r%s", [appName UTF8String], [bundleID UTF8String], [appPath UTF8String]);
-                return 0;
-            }
-        }
+        NSRunningApplication *currApp = [[NSWorkspace sharedWorkspace] frontmostApplication];
+        appName = [currApp localizedName];
+        bundleID = [currApp bundleIdentifier];
+        bundleURL = [currApp bundleURL];
+        appPath = [NSString stringWithUTF8String: bundleURL.fileSystemRepresentation];
+        printf("%s\n%s\n%s", [appName UTF8String], [bundleID UTF8String], [appPath UTF8String]);
+        return 0;
     }
     return 1;
 }

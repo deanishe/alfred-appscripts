@@ -6,6 +6,19 @@
 	<string>net.deanishe.alfred-appscripts</string>
 	<key>connections</key>
 	<dict>
+		<key>0DE16F6E-6B2E-4FD7-9146-87C526800384</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E91E210D-F78B-4CB1-8B44-9A857473689C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>1BA77C1B-6BC1-4E2C-91B0-2455517B2092</key>
 		<array>
 			<dict>
@@ -15,6 +28,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<true/>
 			</dict>
 		</array>
 		<key>62BFD5A0-D2C6-4222-BF37-9F92C8A09F47</key>
@@ -26,6 +41,18 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>65556B95-5798-4CCA-8AA9-856795FAC78B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>6D6DEF2A-5AF8-4EE9-90B8-F54C11E3660C</key>
@@ -37,6 +64,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>E91E210D-F78B-4CB1-8B44-9A857473689C</key>
@@ -48,6 +77,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -56,6 +87,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Open in AppleScript Editor</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -64,6 +97,21 @@
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Reveal in Finder</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F4E3668B-6F3C-48C6-8E03-E71815F3E389</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1BA77C1B-6BC1-4E2C-91B0-2455517B2092</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -80,6 +128,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -98,6 +148,10 @@
 				<string>Loading scripts…</string>
 				<key>script</key>
 				<string>/usr/bin/python appscripts.py search "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Run a script from the active applications Scripts folder</string>
 				<key>title</key>
@@ -112,7 +166,7 @@
 			<key>uid</key>
 			<string>E91E210D-F78B-4CB1-8B44-9A857473689C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -121,11 +175,7 @@
 				<false/>
 				<key>onlyshowifquerypopulated</key>
 				<false/>
-				<key>output</key>
-				<integer>0</integer>
 				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
 				<false/>
 				<key>text</key>
 				<string>{query}</string>
@@ -137,7 +187,7 @@
 			<key>uid</key>
 			<string>E8FFFB36-186D-46CC-995C-EBFCFA84296F</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -147,9 +197,15 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>osascript "{query}" 2&gt;&amp;1 &gt; /dev/null
+				<string># Run the script
+osascript "{query}" 2&gt;&amp;1 &gt; /dev/stderr
 
+# Send script name to Post Nofification
 echo $(basename "{query}")</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -158,20 +214,53 @@ echo $(basename "{query}")</string>
 			<key>uid</key>
 			<string>6D6DEF2A-5AF8-4EE9-90B8-F54C11E3660C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>1310720</integer>
+				<key>hotstring</key>
+				<string>A</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>0DE16F6E-6B2E-4FD7-9146-87C526800384</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
 				<key>openwith</key>
 				<string>/Applications/Utilities/AppleScript Editor.app</string>
+				<key>sourcefile</key>
+				<string></string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openfile</string>
 			<key>uid</key>
 			<string>AF9E613E-CBA5-478B-B924-C1D0B0D88D1C</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>type</key>
@@ -179,11 +268,13 @@ echo $(basename "{query}")</string>
 			<key>uid</key>
 			<string>DD5D1469-1BD0-4F79-8E21-E3D2074DD472</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -198,8 +289,14 @@ echo $(basename "{query}")</string>
 				<integer>0</integer>
 				<key>queuemode</key>
 				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
 				<key>script</key>
 				<string>/usr/bin/python appscripts.py config "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Help and Settings</string>
 				<key>title</key>
@@ -214,7 +311,20 @@ echo $(basename "{query}")</string>
 			<key>uid</key>
 			<string>1BA77C1B-6BC1-4E2C-91B0-2455517B2092</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>settings</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>F4E3668B-6F3C-48C6-8E03-E71815F3E389</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -225,6 +335,10 @@ echo $(basename "{query}")</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>/usr/bin/python appscripts.py {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -233,7 +347,7 @@ echo $(basename "{query}")</string>
 			<key>uid</key>
 			<string>62BFD5A0-D2C6-4222-BF37-9F92C8A09F47</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -242,11 +356,7 @@ echo $(basename "{query}")</string>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
 				<true/>
-				<key>output</key>
-				<integer>0</integer>
 				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
 				<false/>
 				<key>text</key>
 				<string>{query}</string>
@@ -258,54 +368,122 @@ echo $(basename "{query}")</string>
 			<key>uid</key>
 			<string>BDFDF78C-6D61-4023-99F9-CE926B973987</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>settings</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>65556B95-5798-4CCA-8AA9-856795FAC78B</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>0DE16F6E-6B2E-4FD7-9146-87C526800384</key>
+		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
 		<key>1BA77C1B-6BC1-4E2C-91B0-2455517B2092</key>
 		<dict>
+			<key>note</key>
+			<string>Show configuration options</string>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>420</integer>
 		</dict>
 		<key>62BFD5A0-D2C6-4222-BF37-9F92C8A09F47</key>
 		<dict>
+			<key>note</key>
+			<string>Change configuration</string>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>420</integer>
+		</dict>
+		<key>65556B95-5798-4CCA-8AA9-856795FAC78B</key>
+		<dict>
+			<key>note</key>
+			<string>Re-open workflow settings</string>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<integer>550</integer>
 		</dict>
 		<key>6D6DEF2A-5AF8-4EE9-90B8-F54C11E3660C</key>
 		<dict>
+			<key>note</key>
+			<string>Run the script</string>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>AF9E613E-CBA5-478B-B924-C1D0B0D88D1C</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>160</integer>
 		</dict>
 		<key>BDFDF78C-6D61-4023-99F9-CE926B973987</key>
 		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>420</integer>
 		</dict>
 		<key>DD5D1469-1BD0-4F79-8E21-E3D2074DD472</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>290</integer>
 		</dict>
 		<key>E8FFFB36-186D-46CC-995C-EBFCFA84296F</key>
 		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>E91E210D-F78B-4CB1-8B44-9A857473689C</key>
 		<dict>
+			<key>note</key>
+			<string>Show scripts for the active application</string>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
+		<key>F4E3668B-6F3C-48C6-8E03-E71815F3E389</key>
+		<dict>
+			<key>xpos</key>
+			<integer>110</integer>
+			<key>ypos</key>
+			<integer>420</integer>
+		</dict>
 	</dict>
+	<key>version</key>
+	<string>3.0</string>
 	<key>webaddress</key>
 	<string>www.deanishe.net</string>
 </dict>

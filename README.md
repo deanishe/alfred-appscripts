@@ -1,17 +1,22 @@
 
-# Alfred AppScripts Workflow #
+Alfred AppScripts Workflow
+==========================
 
 List, search and run/open AppleScripts for the active application. You can also specify directories that contain scripts that will always be shown, regardless of the active application.
 
 ![][demo]
 
 
-## Download ##
+Download
+--------
+
+**Note:** Version 3.0 and above are not compatible with Alfred 2.
 
 The workflow can be downloaded from [GitHub][gh-releases] or from [Packal][packal].
 
 
-## Usage ##
+Usage
+-----
 
 - `.as [<query>]` — Show/search list of AppleScripts for the active application
 	- `↩` — Run the selected script.
@@ -25,7 +30,8 @@ The workflow can be downloaded from [GitHub][gh-releases] or from [Packal][packa
     - `Reset to Defaults` — Delete configuration and cache files.
 
 
-## Where are these scripts? ##
+Where are these scripts?
+------------------------
 
 The workflow comes with a default set of directories. These are defined in a settings file that you can edit yourself. Use the `Edit Script Directories` option in the configuration (keyword `appscripts`) to open the file in your editor.
 
@@ -44,12 +50,14 @@ Any `*.scpt`, `*.applescript` or `*.scptd` (script bundle) files found within th
 If you add a directory path that doesn't contain `{app_name}` or `{bundle_id}`, it will match every application and the scripts will always be shown. See the settings file (`AppScript Directories.txt`) for more information.
 
 
-## Bug reports, feature requests ##
+Bug reports, feature requests
+-----------------------------
 
 Please use [GitHub issues][gh-issues] to report bugs or request features. Alternatively, you can post in the [Alfred Forum thread][forum-thread].
 
 
-## Licence, thanks ##
+Licence, thanks
+---------------
 
 The workflow code and the bundled [Alfred-Workflow][alfred-workflow] and [docopt][docopt] libraries are all licensed under the [MIT Licence][mit-licence].
 
