@@ -130,6 +130,8 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -147,9 +149,9 @@
 				<key>runningsubtext</key>
 				<string>Loading scripts…</string>
 				<key>script</key>
-				<string>/usr/bin/python appscripts.py search "{query}"</string>
+				<string>/usr/bin/python appscripts.py search "$1"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -197,17 +199,33 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string># Run the script
-osascript "{query}" 2&gt;&amp;1 &gt; /dev/stderr
+				<string>set -e
+
+script="$1"
+ext=${script:e}
+name=${script:t:r}
+lang=AppleScript
+
+[[ $ext = "js" ]] &amp;&amp; lang=JavaScript
+
+echo "----------------------" &gt;&amp;2
+echo "script=$script" &gt;&amp;2
+echo "ext=$ext" &gt;&amp;2
+echo "name=$name" &gt;&amp;2
+echo "lang=$lang" &gt;&amp;2
+echo "----------------------" &gt;&amp;2
+
+# Run the script
+osascript -l $lang "$script" 1&gt;&amp;2
 
 # Send script name to Post Nofification
-echo $(basename "{query}")</string>
+echo "$name"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -251,7 +269,7 @@ echo $(basename "{query}")</string>
 			<key>config</key>
 			<dict>
 				<key>openwith</key>
-				<string>/Applications/Utilities/AppleScript Editor.app</string>
+				<string>/Applications/Utilities/Script Editor.app</string>
 				<key>sourcefile</key>
 				<string></string>
 			</dict>
@@ -275,6 +293,8 @@ echo $(basename "{query}")</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -292,9 +312,9 @@ echo $(basename "{query}")</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>/usr/bin/python appscripts.py config "{query}"</string>
+				<string>/usr/bin/python appscripts.py config "$1"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -334,9 +354,9 @@ echo $(basename "{query}")</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>/usr/bin/python appscripts.py {query}</string>
+				<string>/usr/bin/python appscripts.py $1</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -483,7 +503,7 @@ echo $(basename "{query}")</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>3.0</string>
+	<string>3.1</string>
 	<key>webaddress</key>
 	<string>www.deanishe.net</string>
 </dict>

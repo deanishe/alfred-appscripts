@@ -56,7 +56,7 @@ DEFAULT_PATHS_FILE = os.path.join(os.path.dirname(__file__),
                                   'Script Directories.default.txt')
 
 # Acceptable extensions for AppleScripts
-SCRIPT_EXTENSIONS = ['.scpt', '.applescript', '.scptd']
+SCRIPT_EXTENSIONS = ['.scpt', '.applescript', '.scptd', '.js']
 
 # Icons
 ICON_UPDATE = 'icons/update-available.icns'

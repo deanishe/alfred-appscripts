@@ -4,8 +4,8 @@
 #--------------------------------------------------------------------
 # These directories will be searched for scripts.
 #
-# Files in these directories with extension *.applescript or *.scpt
-# will be shown in results.
+# Files in these directories with extension .applescript, .scpt,
+# .scptd or .js will be shown in results.
 #
 # Empty lines and lines starting with # will be ignored.
 #

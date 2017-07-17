@@ -12,7 +12,7 @@ Download
 
 **Note:** Version 3.0 and above are not compatible with Alfred 2.
 
-The workflow can be downloaded from [GitHub][gh-releases] or from [Packal][packal].
+The workflow can be downloaded from [GitHub releases][gh-releases] or from [Packal][packal].
 
 
 Usage
@@ -45,7 +45,7 @@ These are the default directories. `{app_name}` will be replaced with the name o
 - `~/Library/Application Support/{bundle_id}/Scripts`
 - `~/Library/Containers/{bundle_id}/Data/Library/Application Support/{app_name}/Scripts`
 
-Any `*.scpt`, `*.applescript` or `*.scptd` (script bundle) files found within the above directories will be shown.
+Any `*.scpt`, `*.applescript`, `*.scptd` (script bundle) or `*.js` (JXA) files found within the above directories will be shown.
 
 If you add a directory path that doesn't contain `{app_name}` or `{bundle_id}`, it will match every application and the scripts will always be shown. See the settings file (`AppScript Directories.txt`) for more information.
 
@@ -66,17 +66,17 @@ The workflow icon ([source][icon]), by [destegabry][destegabry], is licensed und
 The other icons are from [Font Awesome][font-awesome] by [Dave Gandy][dave-gandy], and released under the [SIL OFL 1.1 licence][sil-licence].
 
 
-[gh-issues]: https://github.com/deanishe/alfred-appscripts/issues
-[forum-thread]: http://www.alfredforum.com/topic/4218-appscripts
 [alfred-workflow]: https://github.com/deanishe/alfred-workflow
-[icon]: http://destegabry.deviantart.com/art/AppleScript-Folder-79793515
-[destegabry]: http://destegabry.deviantart.com/
 [cc-licence]: http://creativecommons.org/licenses/by-nc/3.0/
-[mit-licence]: http://opensource.org/licenses/MIT
-[font-awesome]: http://fortawesome.github.io/Font-Awesome/
 [dave-gandy]: https://twitter.com/davegandy
-[sil-licence]: http://scripts.sil.org/OFL
-[docopt]: https://github.com/docopt/docopt
-[gh-releases]: https://github.com/deanishe/alfred-appscripts/releases
-[packal]: http://www.packal.org/workflow/appscripts
 [demo]: https://raw.githubusercontent.com/deanishe/alfred-appscripts/master/demo.gif "Animated demonstration of AppScripts"
+[destegabry]: http://destegabry.deviantart.com/
+[docopt]: https://github.com/docopt/docopt
+[font-awesome]: http://fortawesome.github.io/Font-Awesome/
+[forum-thread]: http://www.alfredforum.com/topic/4218-appscripts
+[gh-issues]: https://github.com/deanishe/alfred-appscripts/issues
+[gh-releases]: https://github.com/deanishe/alfred-appscripts/releases
+[icon]: http://destegabry.deviantart.com/art/AppleScript-Folder-79793515
+[mit-licence]: http://opensource.org/licenses/MIT
+[packal]: http://www.packal.org/workflow/appscripts
+[sil-licence]: http://scripts.sil.org/OFL
