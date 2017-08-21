@@ -1,4 +1,3 @@
-
 #--------------------------------------------------------------------
 # Script Directories
 #--------------------------------------------------------------------
@@ -9,7 +8,7 @@
 #
 # Empty lines and lines starting with # will be ignored.
 #
-# Environmental variables and ~/ will be expanded, so
+# Environmental variables and ~ will be expanded, so
 # $HOME/Scripts and ~/Scripts will both expand to the "Scripts"
 # directory in your home folder.
 #
