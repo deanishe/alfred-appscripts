@@ -40,6 +40,7 @@ from time import time
 from docopt import docopt
 
 from workflow import Workflow3, ICON_WARNING, ICON_INFO, ICON_ERROR
+from workflow.util import run_command
 
 
 log = None
@@ -72,7 +73,7 @@ def timer(name):
     """Time the execution of the wrapped code."""
     st = time()
     yield
-    log.debug('%s took %0.3fs', name, time() - st)
+    log.debug('%0.3fs \U000029D7 %s', time() - st, name)
 
 
 def is_script(filename):
@@ -83,6 +84,7 @@ def is_script(filename):
 
     Returns:
         bool: ``True`` if ``filename`` points to a script.
+
     """
     ext = os.path.splitext(filename)[1]
     return ext.lower() in SCRIPT_EXTENSIONS
@@ -96,13 +98,7 @@ Script = namedtuple('Script', 'name path appdir')
 class AppScripts(object):
     """Encapsulates the functionality of this workflow.
 
-    Start the application with:
-
-        wf = Workflow()
-        log = wf.logger
-        app = AppScripts()
-        wf.run(app.run)
-
+    Find, filter and execute scripts.
     """
 
     def __init__(self):
@@ -116,7 +112,7 @@ class AppScripts(object):
         self._bundle_id = None
 
     def run(self, wf):
-        """Main script entry point.
+        """Run script.
 
         Parse command-line arguments and calls the appropriate method.
 
@@ -128,7 +124,7 @@ class AppScripts(object):
             shutil.copy(DEFAULT_PATHS_FILE, self.search_paths_file)
 
         self.args = docopt(__doc__, version=wf.version, argv=wf.args)
-        log.debug('args : %r', self.args)
+        log.debug('args=%r', self.args)
 
         if self.args.get('search'):
             return self.do_search()
@@ -145,7 +141,7 @@ class AppScripts(object):
     # Application actions
 
     def do_search(self):
-        """Main workflow action. View and filter available scripts.
+        """View and filter available scripts.
 
         - Get frontmost app
         - Get list of scripts for that app
@@ -168,15 +164,16 @@ class AppScripts(object):
         try:
             scripts = self.get_scripts_for_app()
         except RuntimeError as err:
-            self.show_error(str(err).decode('utf-8'))
+            self.show_error(unicode(err, 'utf-8'))
             return 1
 
         if not scripts:
-            self.show_warning('No scripts for {}'.format(self.app_name))
+            self.show_warning('No scripts for ' + self.app_name)
             return 0
 
         if query:
-            scripts = wf.filter(query, scripts,
+            scripts = wf.filter(query,
+                                scripts,
                                 key=lambda t: os.path.basename(t[0]),
                                 min_score=30)
 
@@ -285,18 +282,21 @@ class AppScripts(object):
 
     @property
     def app_name(self):
+        """Name of active application."""
         if self._app_name is None:
             self._get_frontmost_app()
         return self._app_name
 
     @property
     def app_path(self):
+        """Path to active application."""
         if self._app_path is None:
             self._get_frontmost_app()
         return self._app_path
 
     @property
     def bundle_id(self):
+        """Bundle ID of active application."""
         if self._bundle_id is None:
             self._get_frontmost_app()
         return self._bundle_id
@@ -313,22 +313,12 @@ class AppScripts(object):
         determined.
 
         """
-        # cmd = [b'/usr/bin/osascript', b'-e', AS_ACTIVE_APP]
-        cmd = [self.wf.workflowfile('ActiveApp')]
-        with timer('frontmost_app'):
-            proc = subprocess.Popen(cmd,
-                                    stdout=subprocess.PIPE,
-                                    stderr=subprocess.PIPE)
+        with timer('get active app'):
+            output = run_command(['./ActiveApp']).decode('utf-8')
 
-            output, err = [wf.decode(s).strip() for s in proc.communicate()]
-
-            if proc.returncode != 0:
-                log.error('AppleScript error : %s', err)
-                raise RuntimeError('Could not get frontmost application.')
-
-            app_name, bundle_id, app_path = [s.strip()
-                                             for s in output.split('\n')]
-            log.debug('frontmost app : %r | %r | %r',
+            app_name, bundle_id, app_path = [
+                s.strip() for s in output.split('\n')]
+            log.debug('frontmost app name=%r, bundleid=%r, path=%r',
                       app_name, bundle_id, app_path)
 
             self._app_name = app_name
@@ -359,10 +349,10 @@ class AppScripts(object):
         # wf.cached_data needs a bare function (no arguments), so
         # wrap the call
         def _wrapper():
-            with timer('find_scripts'):
+            with timer('find scripts'):
                 return self._get_scripts_for_app()
 
-        return self.wf.cached_data('appscripts-{0}'.format(self.bundle_id),
+        return self.wf.cached_data('appscripts-' + self.bundle_id,
                                    _wrapper, max_age=30)
 
     def _get_scripts_for_app(self):
@@ -375,16 +365,16 @@ class AppScripts(object):
 
         """
         scripts = {}
-        with timer('load_script_dirs'):
+        with timer('load script dirs'):
             scriptdirs = self._load_script_directories()
 
         recursive = self.wf.settings.get('recursive', False)
         for scriptdir, appdir in scriptdirs:
 
             if recursive:
-                log.debug('Recursively loading scripts from `%s`...',
+                log.debug('recursively loading scripts from `%s`...',
                           scriptdir)
-                for root, dirnames, filenames in os.walk(scriptdir):
+                for root, _, filenames in os.walk(scriptdir):
                     for filename in filenames:
                         if not is_script(filename):
                             continue
@@ -402,7 +392,7 @@ class AppScripts(object):
                             scripts[script.path] = script
 
             else:
-                log.debug('Loading scripts from `%s`...', scriptdir)
+                log.debug('loading scripts from `%s`...', scriptdir)
                 for filename in os.listdir(scriptdir):
                     if not is_script(filename):
                         continue
@@ -424,12 +414,12 @@ class AppScripts(object):
                           for s in scripts.values()])
         scripts = [t[2] for t in scripts]
 
-        log.debug('%d scripts found for app %s', len(scripts), self.app_name)
+        log.debug('%d script(s) found for %s', len(scripts), self.app_name)
 
         return scripts
 
     def _load_script_directories(self):
-        """Read script directories from ``self.search_paths_file``
+        """Read script directories from ``self.search_paths_file``.
 
         Each path returned is a 2-tuple: ``(path, appdir)``
         ``appdir`` is a boolean indicating whether the directory

@@ -5,7 +5,6 @@
 //  Copyright © 2015 Dean Jackson. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
 int main(int argc, const char * argv[]) {

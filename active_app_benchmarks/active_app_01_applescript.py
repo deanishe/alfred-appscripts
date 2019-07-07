@@ -8,20 +8,13 @@
 # Created on 2015-11-23
 #
 
-"""
-Get app info via AppleScript.
-"""
+"""Get app info via AppleScript."""
 
 from __future__ import print_function, unicode_literals, absolute_import
 
-import logging
-import os
 import subprocess
 import time
 import unicodedata
-
-log = logging.getLogger(os.path.basename(__file__))
-logging.basicConfig(level=logging.DEBUG)
 
 AS_ACTIVE_APP = """\
 tell application "System Events"
@@ -35,6 +28,7 @@ end tell
 
 
 def decode(s):
+    """Decode bytestring to Unicode."""
     if isinstance(s, str):
         s = unicode(s, 'utf-8')
     elif not isinstance(s, unicode):
@@ -49,7 +43,6 @@ def get_frontmost_app():
     determined.
 
     """
-
     cmd = [b'/usr/bin/osascript', b'-e', AS_ACTIVE_APP]
     proc = subprocess.Popen(cmd,
                             stdout=subprocess.PIPE,
@@ -66,8 +59,6 @@ def get_frontmost_app():
     output = decode(output)
 
     app_name, bundle_id, app_path = [s.strip() for s in output.split('\r')]
-    log.debug('frontmost app : %r | %r | %r',
-              app_name, bundle_id, app_path)
 
     return (app_name, bundle_id, app_path)
 
@@ -76,4 +67,3 @@ if __name__ == '__main__':
     s = time.time()
     get_frontmost_app()
     d = time.time() - s
-    log.debug('Ran in %0.4f seconds.', d)

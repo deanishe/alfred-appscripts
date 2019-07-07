@@ -130,6 +130,8 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -206,7 +208,7 @@ ext=${script:e}
 name=${script:t:r}
 opts=()
 
-[[ $ext = "js" ]] &amp;&amp; opts+=(-l JavaScript)
+[[ $ext = "js" ]] || [[ $ext = "jxa" ]] &amp;&amp; opts+=(-l JavaScript)
 
 echo "----------------------" &gt;&amp;2
 echo "script=$script" &gt;&amp;2
@@ -242,9 +244,9 @@ echo "$name"</string>
 				<key>argument</key>
 				<integer>0</integer>
 				<key>focusedappvariable</key>
-				<false/>
+				<true/>
 				<key>focusedappvariablename</key>
-				<string></string>
+				<string>active_app</string>
 				<key>hotkey</key>
 				<integer>0</integer>
 				<key>hotmod</key>
@@ -291,8 +293,23 @@ echo "$name"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>settings</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>F4E3668B-6F3C-48C6-8E03-E71815F3E389</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -336,13 +353,21 @@ echo "$name"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>settings</string>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Configuration Updated</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>F4E3668B-6F3C-48C6-8E03-E71815F3E389</string>
+			<string>BDFDF78C-6D61-4023-99F9-CE926B973987</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -372,27 +397,6 @@ echo "$name"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Configuration Updated</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>BDFDF78C-6D61-4023-99F9-CE926B973987</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>externaltriggerid</key>
 				<string>settings</string>
 				<key>passinputasargument</key>
@@ -417,93 +421,93 @@ echo "$name"</string>
 		<key>0DE16F6E-6B2E-4FD7-9146-87C526800384</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>60</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>40</integer>
 		</dict>
 		<key>1BA77C1B-6BC1-4E2C-91B0-2455517B2092</key>
 		<dict>
 			<key>note</key>
 			<string>Show configuration options</string>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>260</integer>
 			<key>ypos</key>
-			<integer>420</integer>
+			<integer>450</integer>
 		</dict>
 		<key>62BFD5A0-D2C6-4222-BF37-9F92C8A09F47</key>
 		<dict>
 			<key>note</key>
 			<string>Change configuration</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>420</integer>
+			<integer>450</integer>
 		</dict>
 		<key>65556B95-5798-4CCA-8AA9-856795FAC78B</key>
 		<dict>
 			<key>note</key>
 			<string>Re-open workflow settings</string>
 			<key>xpos</key>
-			<integer>700</integer>
+			<integer>660</integer>
 			<key>ypos</key>
-			<integer>550</integer>
+			<integer>580</integer>
 		</dict>
 		<key>6D6DEF2A-5AF8-4EE9-90B8-F54C11E3660C</key>
 		<dict>
 			<key>note</key>
 			<string>Run the script</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>40</integer>
 		</dict>
 		<key>AF9E613E-CBA5-478B-B924-C1D0B0D88D1C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>160</integer>
+			<integer>190</integer>
 		</dict>
 		<key>BDFDF78C-6D61-4023-99F9-CE926B973987</key>
 		<dict>
 			<key>xpos</key>
-			<integer>700</integer>
+			<integer>660</integer>
 			<key>ypos</key>
-			<integer>420</integer>
+			<integer>450</integer>
 		</dict>
 		<key>DD5D1469-1BD0-4F79-8E21-E3D2074DD472</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>290</integer>
+			<integer>320</integer>
 		</dict>
 		<key>E8FFFB36-186D-46CC-995C-EBFCFA84296F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>700</integer>
+			<integer>660</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>40</integer>
 		</dict>
 		<key>E91E210D-F78B-4CB1-8B44-9A857473689C</key>
 		<dict>
 			<key>note</key>
 			<string>Show scripts for the active application</string>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>260</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>40</integer>
 		</dict>
 		<key>F4E3668B-6F3C-48C6-8E03-E71815F3E389</key>
 		<dict>
 			<key>xpos</key>
-			<integer>110</integer>
+			<integer>70</integer>
 			<key>ypos</key>
-			<integer>420</integer>
+			<integer>450</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>3.1.1</string>
+	<string>3.2.0</string>
 	<key>webaddress</key>
 	<string>www.deanishe.net</string>
 </dict>

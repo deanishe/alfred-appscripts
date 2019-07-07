@@ -1,0 +1,2 @@
+docopt==0.62
+Alfred-Workflow==1.37.2
